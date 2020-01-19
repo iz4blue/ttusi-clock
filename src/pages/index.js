@@ -17,14 +17,15 @@ function getPercent() {
 }
 
 let globalPercent = getPercent();
+let timer;
 
 function next() {
   getPercent();
-  return setTimeout(next, 500);
+  timer = setTimeout(next, 500);
 }
 
 export default () => {
-  let timer = setTimeout(next, 500);
+  setTimeout(next, 500);
 
   return (
     <div>
