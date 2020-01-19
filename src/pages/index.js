@@ -29,8 +29,8 @@ export default () => {
 
   return (
     <div>
-      <Bar initialCount={globalPercent}/>
-      <Percent initialCount={globalPercent}/>
+      <Bar initialValue={globalPercent}/>
+      <Percent initialValue={globalPercent}/>
 
       <button onClick={() => getPercent()}>reset</button>
       <button onClick={() => clearTimeout(timer)}>stop</button>
