@@ -1,15 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 
-function Percent({initialValue}) {
-  const [value, setPercent] = useState(initialValue);
-
-  const onChangeValue = e => {
-    setPercent(e.target.value);
-  };
-
+function Percent(props) {
   return (
     <>
-      <div>2020 <span id="percent">{value.toFixed(6)}</span>%</div>
+      <div>2020 <span id="percent">{props.value.toFixed(6)}</span>%</div>
     </>
   );
 }

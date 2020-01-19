@@ -1,7 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 
-function Bar({initialValue}) {
-  const [value, setValue] = useState(initialValue);
+function Bar(props) {
   return (
     <>
       <div>Progress bar</div>

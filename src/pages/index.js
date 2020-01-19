@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Bar from "../components/bar"
 import Percent from "../components/percent"
 
@@ -9,31 +9,25 @@ function getPercent() {
 
   let date_now = new Date();
   let ts_now_from_first_2020 = date_now.getTime() - date_first_2020.getTime();
-  let percent = ts_now_from_first_2020 / ts_2020_total * 100
-  console.log(percent)
-  globalPercent = percent
 
-  return globalPercent
-}
-
-let globalPercent = getPercent();
-let timer;
-
-function next() {
-  getPercent();
-  timer = setTimeout(next, 500);
+  return ts_now_from_first_2020 / ts_2020_total * 100
 }
 
 export default () => {
-  setTimeout(next, 500);
+  const [globalPercent, setGlobalPercent] = useState(getPercent())
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setGlobalPercent(getPercent())
+    }, 500)
+
+    return () => clearInterval(timer);
+  }, [globalPercent])
 
   return (
     <div>
-      <Bar initialValue={globalPercent}/>
-      <Percent initialValue={globalPercent}/>
-
-      <button onClick={() => getPercent()}>reset</button>
-      <button onClick={() => clearTimeout(timer)}>stop</button>
+      <Bar initialValue={globalPercent} />
+      <Percent value={globalPercent} />
     </div>
   )
 }
