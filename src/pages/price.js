@@ -14,14 +14,15 @@ function getProgress() {
 
 export default () => {
   const [progress, setProgress] = useState(getProgress())
+  const update = time => {
+    setProgress(getProgress())
+  }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setProgress(getProgress())
-    }, 500)
-
-    return () => clearInterval(timer);
+    update()
   }, [progress])
+
+  window.requestAnimationFrame(update)
 
   return (
     <div>
