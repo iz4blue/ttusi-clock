@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Bar from "../components/bar"
 import Percent from "../components/percent"
-import Segment from "../components/segment_7"
+import Segments from "../components/segments"
 
 function getPercent() {
   const date_first_2020 = new Date(2020, 0, 1, 0, 0, 0, 0);
@@ -30,9 +30,7 @@ export default () => {
       <Bar initialValue={globalPercent} />
       <Percent value={globalPercent} />
       <div id="clock-container">
-        <Segment />
-        <Segment />
-        <Segment />
+        <Segments value={globalPercent.toFixed(6)} />
       </div>
     </div>
   )
